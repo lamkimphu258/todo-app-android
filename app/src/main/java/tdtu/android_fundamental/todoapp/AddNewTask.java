@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ import java.util.Objects;
 import tdtu.android_fundamental.todoapp.Handlers.DatabaseHandler;
 import tdtu.android_fundamental.todoapp.Models.TodoModel;
 
-public class AddNewTask  extends BottomSheetDialogFragment {
+public class AddNewTask extends BottomSheetDialogFragment {
 
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
@@ -96,13 +97,17 @@ public class AddNewTask  extends BottomSheetDialogFragment {
         });
 
         final boolean finalIsUpdate = isUpdate;
+        Log.i(TAG, String.valueOf(finalIsUpdate));
         newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i(TAG, "On click");
                 String text = newTaskText.getText().toString();
                 if (finalIsUpdate) {
+                    Log.i(TAG, "Final is update");
                     db.updateTask(bundle.getInt("id"), text);
                 } else {
+                    Log.i(TAG, "Create new task");
                     TodoModel task = new TodoModel();
                     task.setTask(text);
                     task.setStatus(0);
@@ -115,6 +120,7 @@ public class AddNewTask  extends BottomSheetDialogFragment {
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
+        Log.i(TAG, "onDismiss: " + dialog.toString());
         Activity activity = getActivity();
         if (activity instanceof DialogCloseListener)
             ((DialogCloseListener) activity).handleDialogClose(dialog);

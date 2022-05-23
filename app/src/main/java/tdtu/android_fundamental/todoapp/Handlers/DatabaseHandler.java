@@ -51,7 +51,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(TODO_TABLE, null, cv);
     }
 
-    @SuppressLint("Range")
     public List<TodoModel> getAllTasks(){
         List<TodoModel> taskList = new ArrayList<>();
         Cursor cur = null;

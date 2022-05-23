@@ -19,7 +19,7 @@ import tdtu.android_fundamental.todoapp.Adapters.TodoAdapter;
 import tdtu.android_fundamental.todoapp.Handlers.DatabaseHandler;
 import tdtu.android_fundamental.todoapp.Models.TodoModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogCloseListener {
     private DatabaseHandler db;
 
     private RecyclerView tasksRecyclerView;
